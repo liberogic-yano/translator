@@ -1,19 +1,18 @@
 <template lang="pug">
-  v-container(fluid)
-    v-row
-      v-col(cols="12" md="6")
-        p JP
-        v-textarea(name="text" label="Enter Text" rows="5" cols="50" v-model="text" v-on:keyup="doAction()")
-      v-col(cols="12", md="6")
-        p EN
-        v-textarea(name="result" label="Translation" rows="5" cols="50" :value="result")
+  v-row(align="center" justify="center")
+    v-col(cols="12" md="6")
+      p JP
+      v-textarea(name="text" label="Enter Text" rows="5" cols="50" v-model="text" v-on:keyup="doAction()")
+    v-col(cols="12", md="6")
+      p EN
+      v-textarea(name="result" label="Translation" rows="5" cols="50" :value="result" disabled)
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 export default Vue.extend({
-  name: 'Form',
+  name: 'TextForm',
   data() {
     return {
       text: '',

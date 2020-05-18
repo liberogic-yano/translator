@@ -1,25 +1,12 @@
 <template lang="pug">
-  div(class="container")
-    div
-      Form
-      h1(class="title") app
-      h2(class="subtitle") My magnificent Nuxt.js project
-      div(class="links")
-        a(href="https://nuxtjs.org/" target="_blank" class="button--green") Documentation
-        a(href="https://github.com/nuxt/nuxt.js" target="_blank" class="button--grey") Github
+  v-content
+    v-container(fluid)
+      p Top
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import Logo from '~/components/Logo.vue'
-import Form from '~/components/Form.vue'
-
-export default Vue.extend({
-  components: {
-    Logo,
-    Form
-  }
-})
+export default Vue.extend({})
 </script>
 
 <style>
