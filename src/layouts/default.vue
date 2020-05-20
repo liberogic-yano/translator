@@ -38,6 +38,11 @@ export default Vue.extend({
           url: '/static/'
         },
         {
+          title: 'Smoke',
+          icon: 'mdi-file-code-outline',
+          url: '/smoke/'
+        },
+        {
           title: 'Text Form',
           icon: 'mdi-file-code-outline',
           url: '/form/text/'
