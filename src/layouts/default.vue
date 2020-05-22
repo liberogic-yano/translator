@@ -1,13 +1,22 @@
 <template lang="pug">
   v-app(id="inspire")
     v-navigation-drawer(v-model="drawer" app clipped)
-      v-list(dense v-for="item in items" :key="item.title")
-        v-list-item(link :href="item.url")
-          v-list-item-action
-            v-icon {{ item.icon }}
-          v-list-item-content
-            v-list-item-title {{ item.title }}
-    
+      v-list( dense )
+        template( v-for="item in items" )
+          v-list-group( v-if="item.children" :key="item.title" v-model="item.model" :prepend-icon="item.model ? item.icon : item['icon-alt']" append-icon="" )
+            template( v-slot:activator )
+              v-list-item-content
+                v-list-item-title {{ item.title }}
+            v-list-item( v-for="(child, i) in item.children" :key="i" link :href="child.url" )
+              v-list-item-action( v-if="child.icon" )
+                v-icon {{ child.icon }}
+              v-list-item-content
+                v-list-item-title {{ child.title }}
+          v-list-item( v-else :key="item.title" link :href="item.url" )
+            v-list-item-action
+              v-icon {{ item.icon }}
+            v-list-item-content
+              v-list-item-title {{ item.title }}
     v-app-bar(app clipped-left)
       v-app-bar-nav-icon(v-on:click.stop="drawer = !drawer")
       v-toolbar-title Application
@@ -39,8 +48,21 @@ export default Vue.extend({
         },
         {
           title: 'Smoke',
-          icon: 'mdi-file-code-outline',
-          url: '/smoke/'
+          icon: 'mdi-chevron-up',
+          'icon-alt': 'mdi-chevron-down',
+          model: false,
+          children: [
+            {
+              title: 'Pro',
+              icon: 'mdi-file-code-outline',
+              url: '/smoke/'
+            },
+            {
+              title: 'Simple',
+              icon: 'mdi-file-code-outline',
+              url: '/smoke/simple/'
+            }
+          ]
         },
         {
           title: 'Text Form',
