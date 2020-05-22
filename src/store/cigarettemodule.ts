@@ -1,3 +1,4 @@
+// @see - https://qiita.com/tsrnk/items/fd95c3d8013d0795a260
 import {
   Module,
   VuexModule,
