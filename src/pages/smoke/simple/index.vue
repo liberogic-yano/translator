@@ -39,9 +39,9 @@ import { CigarettePackage } from '~/store/cigarettemodule'
 
 @Component
 export default class SmokeSimpleIndex extends Vue {
-  price: number = 400
-  count: number = 20
-  num: number = 20
+  price: number = 0
+  count: number = 0
+  num: number = 0
   onBeginMeasure() {
     CigarettePackage.SetPrice(this.price)
     CigarettePackage.SetCount(this.count)
