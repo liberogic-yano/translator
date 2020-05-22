@@ -15,15 +15,15 @@
         v-row
           v-col( cols="3" )
             span タバコの価格
-            v-text-field( v-model="price" :value="price" placeholder="400" append-icon="円")
+            v-text-field( v-model="model.price" placeholder="400" append-icon="円")
         v-row
           v-col( cols="3" )
             span 1箱あたりの本数
-            v-text-field( v-model="count" :value="count" placeholder="20" append-icon="本")
+            v-text-field( v-model="model.count" placeholder="20" append-icon="本")
         v-row
           v-col( cols="3" )
             span 1日の喫煙本数
-            v-text-field( v-model="num" :value="num" placeholder="10" append-icon="本")
+            v-text-field( v-model="model.smoke" placeholder="10" append-icon="本")
         v-divider
         v-row
           v-col( cols="5")
@@ -36,19 +36,14 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { CigarettePackage } from '~/store/cigarettemodule'
+import { CigaretteState, CigaretteModel } from '~/models/CigaretteModel'
 
 @Component
 export default class SmokeSimpleIndex extends Vue {
-  price: number = 0
-  count: number = 0
-  num: number = 0
+  model: CigaretteState = new CigaretteModel()
   onBeginMeasure() {
-    CigarettePackage.SetPrice(this.price)
-    CigarettePackage.SetCount(this.count)
-    CigarettePackage.SetSmoke(this.num)
+    CigarettePackage.save(this.model)
   }
-  onResetMeasure() {
-    CigarettePackage.Reset().then((r) => console.log)
-  }
+  onResetMeasure() {}
 }
 </script>
