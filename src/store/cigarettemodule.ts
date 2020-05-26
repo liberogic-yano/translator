@@ -7,7 +7,7 @@ import {
   MutationAction,
   getModule
 } from 'vuex-module-decorators'
-import { CigaretteState, CigaretteModel } from '~/models/CigaretteModel'
+import { CigaretteState, TimeState, CigaretteModel } from '~/models'
 import { store } from '~/store'
 
 @Module({
@@ -18,14 +18,31 @@ import { store } from '~/store'
   store: store
 })
 class CigarettePackageModule extends VuexModule {
+  ci: CigaretteModel = new CigaretteModel()
   @Mutation
-  public SAVE(model: CigaretteState) {
+  public SAVE_STORAGE(model: Object) {
     localStorage.setItem('cigarette', JSON.stringify(model))
   }
 
-  @Action
-  public save(args: any) {
-    this.SAVE(args)
+  @Mutation
+  public LOAD_STORAGE(): void {
+    if (process.client) {
+      const items = window.localStorage.getItem('cigarette') || ''
+      if (items) {
+        const store: CigaretteModel = JSON.parse(items) as CigaretteModel
+        this.ci = store
+      }
+    }
+  }
+
+  @Action({ rawError: true })
+  public save(args: Object) {
+    this.SAVE_STORAGE(args)
+  }
+
+  @Action({ rawError: true })
+  public load(): void {
+    this.LOAD_STORAGE()
   }
 
   // @MutationAction({ mutate: ['_model'] })

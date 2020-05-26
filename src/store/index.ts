@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import { CigaretteState } from '~/store/cigarettemodule'
-import { CigaretteState } from '~/models/CigaretteModel'
+import { CigaretteState } from '~/models'
 Vue.use(Vuex)
 export interface State {
   state: CigaretteState
