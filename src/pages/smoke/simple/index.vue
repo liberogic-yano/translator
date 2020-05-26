@@ -58,9 +58,13 @@ export default class SmokeSimpleIndex extends Vue {
 
   created() {
     CigarettePackage.load()
+  }
+  mounted() {
     const c: string = this.cigaretteItem.created_at
-    const d: Date = new Date(c)
-    this.time.setISOFormat(d)
+    this.time.setISOFormat(new Date(c))
+    this.model.price = this.cigaretteItem.price
+    this.model.count = this.cigaretteItem.count
+    this.model.smoke = this.cigaretteItem.smoke
   }
   onBeginMeasure() {
     this.model.created_at = this.time.getISOFormat()
