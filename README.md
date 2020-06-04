@@ -1,6 +1,6 @@
-# app
+# transapp
 
-> My magnificent Nuxt.js project
+> My well-made Nuxt.js project
 
 ## Build Setup
 
